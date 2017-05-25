@@ -1,0 +1,40 @@
+﻿[JavaScript:{ jsname: "JQuery" }]
+[JavaScript:{ jsname: "Knockout" }]
+[JavaScript:{ path: "~/Resources/Shared/scripts/dnn.jquery.js"}]
+[JavaScript:{ path: "~/DesktopModules/DotNetNuclear/PBStarter/Resources/js/common.js"}]
+[JavaScript:{ path: "~/DesktopModules/DotNetNuclear/PBStarter/Resources/js/itemView.js"}]
+[CSS:{ path: "~/DesktopModules/DotNetNuclear/PBStarter/Resources/module.css"}]
+
+<div id="items-wrap-[ModuleContext:ModuleId]" class="container">
+    <div id="noresults-[ModuleContext:ModuleId]" class="dnnFormMessage dnnFormInfo" data-bind="visible: itemList().length <= 0">
+        <span>[Resx:{key:"NoItemsDefined"}]</span>
+    </div>
+    <div class="row resultset" data-bind="visible: itemList().length > 0">
+        <!-- ko foreach: {data: itemList}  -->
+        <div class="result-list col-xs-12">
+            <div class="col-sm-12">
+                <div class="result-content">
+                    <h3 data-bind="text: name"></h3>
+                    <div class="result-content-Info" data-bind="text: description"></div>
+                </div>
+            </div>
+        </div>
+        <!-- /ko -->
+    </div>
+</div>
+
+<script language="javascript" type="text/javascript">
+    jQuery(function ($) {
+        var bindContainer = "#items-wrap-[ModuleContext:ModuleId]";
+        var options = {
+            moduleId: parseInt("[ModuleContext:ModuleId]"),
+            localResources: { },
+            bindContainer: bindContainer
+        };
+
+        var viewmodel = new dotnetnuclear.itemListViewModel(options);
+        viewmodel.init();
+
+        ko.applyBindings(viewmodel, $(bindContainer)[0]);
+    });
+</script>

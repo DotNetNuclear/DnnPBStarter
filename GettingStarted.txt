@@ -1,0 +1,6 @@
+Unzip code into \DesktopModules\[CompanyName]\[ProjectName]
+
+From command prompt, run:
+> cd "\DesktopModules\[CompanyName]\[ProjectName]"
+> npm config set registry https://www.myget.org/F/dnn-software-public/npm/
+> npm install

@@ -1,0 +1,38 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}DotNetNuclear_PBStarter_Item]') AND type in (N'U'))
+BEGIN
+	CREATE TABLE {databaseOwner}[{objectQualifier}DotNetNuclear_PBStarter_Item](
+		[ItemId] [int] IDENTITY(1,1) NOT NULL,
+		[PortalId] [int] NOT NULL,
+		[Name] [nvarchar](100) NOT NULL,
+		[Description] [nvarchar](1000) NULL,
+		[AddedByUserId] [int] NULL,
+		[DateAdded] [datetime] NOT NULL,
+		[ModifiedByUserId] [int] NULL,
+		[DateModified] [datetime] NOT NULL,
+	  CONSTRAINT [PK_DotNetNuclear_PBStarter_Item] PRIMARY KEY CLUSTERED 
+		(
+			[ItemId] ASC
+		)
+	) 
+
+	ALTER TABLE {databaseOwner}[{objectQualifier}DotNetNuclear_PBStarter_Item] ADD  CONSTRAINT [DF_DotNetNuclear_PBStarter_Item_DateAdded]  DEFAULT (getdate()) FOR [DateAdded]
+
+	ALTER TABLE {databaseOwner}[{objectQualifier}DotNetNuclear_PBStarter_Item] ADD  CONSTRAINT [DF_DotNetNuclear_PBStarter_Item_DateModified]  DEFAULT (getdate()) FOR [DateModified]
+
+END
+GO
+
+
+/************************************************************/
+/*****              SqlDataProvider                     *****/
+/************************************************************/
