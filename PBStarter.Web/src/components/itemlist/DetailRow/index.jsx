@@ -69,7 +69,6 @@ class DetailRow extends Component {
                                     title={resx.get("EditItem")}/>
                                 </GridCell>;
                             } else {
-                                debugger;
                                 return <GridCell columnSize={rowDetail.columnSize}>
                                     <h6>{this.props[rowDetail.key]}</h6>
                                 </GridCell>;
